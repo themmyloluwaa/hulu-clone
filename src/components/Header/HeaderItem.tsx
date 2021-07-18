@@ -1,15 +1,8 @@
 import React from "react";
 
-type IconProps = {
-  className: string;
-};
+import { HeaderItemProps } from "../../types";
 
-type Props = {
-  title: string;
-  Icon: React.FC<IconProps>;
-};
-
-const HeaderItem: React.FC<Props> = ({ title, Icon }) => {
+const HeaderItem: React.FC<HeaderItemProps> = ({ title, Icon }) => {
   return (
     <div className="flex mt-5 flex-col items-center cursor-pointer w-12 sm:w-20 hover:text-white group">
       <Icon className="h-8 mb-1 group-hover:animate-bounce" />
