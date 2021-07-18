@@ -24,7 +24,7 @@ const Home: React.FC<HomeProps> = ({ results }) => {
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const genre = context.params?.genre ?? "fetchTrending";
+  const genre = context.query?.genre ?? "fetchTrending";
 
   // @ts-ignore
   const request = await fetch(
