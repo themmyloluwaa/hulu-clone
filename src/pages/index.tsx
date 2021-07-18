@@ -1,8 +1,11 @@
 import Head from "next/head";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
-
-export default function Home() {
+import Result from "../components/Result";
+import { GetServerSidePropsContext } from "next";
+import requests from "../utils/requests";
+import { HomeProps } from "../types";
+const Home: React.FC<HomeProps> = ({ results }) => {
   return (
     <div>
       <Head>
@@ -13,6 +16,28 @@ export default function Home() {
 
       <Header />
       <Nav />
+      <Result results={results} />
     </div>
   );
-}
+};
+
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const genre = context.params?.genre ?? "fetchTrending";
+
+  // @ts-ignore
+  const request = await fetch(
+    // @ts-ignore
+    `https://api.themoviedb.org/3${requests[genre].url}`
+  ).then((res) => res.json());
+
+  return {
+    props: {
+      results: request.results,
+    },
+  };
+  // ...
+};
+
+export default Home;
