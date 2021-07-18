@@ -24,6 +24,9 @@ export type ResultProps = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  media_type: string;
+  first_air_date: string;
+  name: string;
 };
 
 export type HomeProps = {
